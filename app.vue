@@ -21,6 +21,10 @@ onMounted(async () => {
 
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <transition name="fade">
+      <LoadingScreen v-if="mainStore.isLoading" />
+    </transition>
+
+    <NuxtPage v-if="!mainStore.isLoading" />
   </NuxtLayout>
 </template>

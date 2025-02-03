@@ -1,7 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/scripts', '@pinia/nuxt', '@formkit/auto-animate/nuxt', 'nuxt-swiper'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/scripts', '@pinia/nuxt', '@formkit/auto-animate/nuxt', 'nuxt-swiper', '@nuxt/fonts'],
   css: ['@/assets/css/tailwind.css', '@/assets/css/main.css'],
+
   app: {
     head: {
       title: '',
@@ -20,17 +21,22 @@ export default defineNuxtConfig({
       ]
     },
   },
+
   plugins: [
     '~/plugins/telegram.client.js',
-    '~/plugins/init.js'
+    '~/plugins/init.js',
+    '~/plugins/haptic.client.js',
+    '~/plugins/backButton.client.js'
   ],
+
   runtimeConfig: {
     JWT_SECRET_KEY: '',
     BOT_TOKEN: '',
     public: {
-
+      hapticEnabled: true
     }
   },
+
   nitro: {
     publicAssets: [
       {
@@ -38,5 +44,7 @@ export default defineNuxtConfig({
         dir: 'public'
       }
     ]
-  }
+  },
+
+  compatibilityDate: '2025-02-04'
 })

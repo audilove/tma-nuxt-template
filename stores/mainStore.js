@@ -4,6 +4,10 @@ export const useMainStore = defineStore('main', () => {
 
     const webapp = useNuxtApp().$webapp
 
+    const toasts = ref([])
+
+    const isLoading = ref(true)
+
     const config = useRuntimeConfig()
 
     const fetchNewToken = async (initData) => {
@@ -47,15 +51,34 @@ export const useMainStore = defineStore('main', () => {
     }
 
     const initializeProject = async () => {
-        const token = await getToken()
+        // const token = await getToken()
+
+        isLoading.value = false
     }
 
     const serverInit = async () => {
         console.log('serverInit')
     }
 
+    const addToast = (title, duration = 3) => {
+        const id = Date.now()
+        const toast = {
+            id,
+            title
+        }
+
+        toasts.value.push(toast)
+
+        setTimeout(() => {
+            toasts.value = toasts.value.filter(t => t.id !== id)
+        }, duration * 1000)
+    }
+
     return {
         serverInit,
-        initializeProject
+        initializeProject,
+        isLoading,
+        toasts,
+        addToast
     }
 })
