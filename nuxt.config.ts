@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/scripts', '@pinia/nuxt', '@formkit/auto-animate/nuxt', 'nuxt-swiper', '@nuxt/fonts'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/scripts', '@pinia/nuxt', '@formkit/auto-animate/nuxt', 'nuxt-swiper', '@nuxt/fonts', '@nuxtjs/i18n'],
   css: ['@/assets/css/tailwind.css', '@/assets/css/main.css'],
 
   app: {
@@ -36,7 +36,15 @@ export default defineNuxtConfig({
       hapticEnabled: true
     }
   },
-
+  i18n: {
+    strategy: 'no_prefix',
+    langDir: "locales",
+    locales: [
+      { code: 'en', language: 'en-US', file: 'en.json' },
+      { code: 'ru', language: 'ru-RU', file: 'ru.json' }
+    ],
+    defaultLocale: 'en'
+  },
   nitro: {
     publicAssets: [
       {
